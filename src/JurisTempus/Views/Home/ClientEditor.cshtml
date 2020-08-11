@@ -1,22 +1,30 @@
 @{
   ViewData["Title"] = "Client Editor";
 }
+@section Scripts {
+  @* QUESTA PARTIAL E' NECESSARIA PER AVERE FLUENT VALIDATION SU FORM LATO CLIENT CON JQUERY*@
+  <partial name="_ValidationScriptsPartial" />
+}
+@model ClientDTO
   <div class="row">
     <div class="col-8 offset-2">
       <h3>Client Editor</h3>
       <form method="post">
-        <input type="hidden" />
+        <input type="hidden" asp-for="Id" />
         <div class="form-group">
-          <label></label>
-          <input class="form-control" />
+          <label asp-for="Name"></label>
+          <input asp-for="Name" class="form-control" />
+          <span asp-validation-for="Name" class="text-warning"></span>
         </div>
         <div class="form-group">
-          <label></label>
-          <input class="form-control"/>
+          <label asp-for="ContactName"></label>
+          <input asp-for="ContactName" class="form-control"/>
+          <span asp-validation-for="ContactName" class="text-warning"></span>
         </div>
         <div class="form-group">
-          <label></label>
-          <input class="form-control" />
+          <label asp-for="Phone"></label>
+          <input asp-for="Phone" class="form-control" />
+          <span asp-validation-for="Phone" class="text-error"></span>
         </div>
         <div class="form-group">
           <a asp-action="Index" class="btn btn-info">Cancel</a>

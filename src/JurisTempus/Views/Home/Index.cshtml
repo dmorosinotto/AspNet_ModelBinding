@@ -1,9 +1,27 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model ClientDTO[]
   <div class="row">
     <div class="col-8 offset-2">
+      <a asp-action="ClientEditor" asp-route-id="0" class="btn btn-success">NEW Client</a>
+
       <h3>Clients</h3>
+      @foreach (var c in Model)
+      { 
+          <div>@c.Name - @c.ContactName</div> 
+          <span>Ph: @c.Phone</span>
+          <address>@c.FullAddress <br/>
+          @c.AddressCityTown (@c.AddressStateProvince)
+          </address>
+          <ul>
+            @foreach (var item in c.Cases)
+            {
+                <li>@item.FileNumber - @item.Status=@item.StatusId</li>
+            }
+          </ul>
+          <a asp-action="ClientEditor" asp-route-id="@c.Id" class="btn btn-primary">Edit</a>
+      }
     </div>
   </div>
 
